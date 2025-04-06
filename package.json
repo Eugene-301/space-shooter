@@ -1,0 +1,21 @@
+{
+  "name": "space-shooter",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "this project is based on vanilla js and is my first project after learning js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eugene-301/space-shooter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Eugene-301/space-shooter/issues"
+  },
+  "homepage": "https://github.com/Eugene-301/space-shooter#readme"
+}
