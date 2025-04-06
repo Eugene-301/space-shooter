@@ -1,4 +1,7 @@
 const root = document.querySelector(".root");
+const originalMeteor = document.querySelector(".meteor");
+
+const meteorSize = (originalMeteor.offsetWidth * 100) / window.innerWidth;
 const maxPosition = 100 - meteorSize;
 
 export const initMeteors = () => {
