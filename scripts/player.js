@@ -1,12 +1,21 @@
 const player = document.querySelector(".player");
 
+const positionMin = 0;
+const positionMax = screen.width;
+
+let position = 0;
+
 export const initPlayer = () => {
   document.addEventListener("keydown", (e) => {
     const keyPressed = e.key;
     if (keyPressed === "ArrowRight" || keyPressed === "d") {
-      console.log("its right");
+      if (position >= positionMax - player.offsetWidth) return;
+      position += 35;
+      player.style.left = `${position}px`;
     } else if (keyPressed === "ArrowLeft" || keyPressed === "a") {
-      console.log("its left");
+      if (position <= positionMin) return;
+      position -= 35;
+      player.style.left = `${position}px`;
     }
   });
 };
