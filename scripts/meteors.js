@@ -10,9 +10,7 @@ export const initMeteors = () => {
 
     const meteorHTML = `<div class='meteor' style="left: ${randomPosition}%"><img src='./assets/images/enemy-meteor.png'alt='вражеский метеорит'class='meteor__img img'/></div>`;
 
-    let colya = root.insertAdjacentHTML("afterbegin", meteorHTML);
-
-    console.log(colya);
+    root.insertAdjacentHTML("afterbegin", meteorHTML);
   }, 100);
 };
 
