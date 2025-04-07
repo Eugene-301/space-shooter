@@ -4,6 +4,8 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: "Milker", sans-serif;
+  color: var(--text-color);
 }
 
 html,
@@ -11,4 +13,10 @@ body {
   width: 100%;
   height: 100%;
   overflow: hidden;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
 }

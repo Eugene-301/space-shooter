@@ -28,14 +28,14 @@ const createMeteor = () => {
   return meteorDiv;
 };
 
-export const initMeteors = () => {
+export const initMeteors = (modifier = 1) => {
   setInterval(() => {
     const meteor = createMeteor();
 
     let yMeteorPosition = 0;
 
     const meteorMove = setInterval(() => {
-      yMeteorPosition += meteorSpeed;
+      yMeteorPosition += meteorSpeed * modifier;
       meteor.style.top = `${yMeteorPosition}%`;
 
       if (yMeteorPosition > maxPosition + meteorSizeY) {
@@ -43,7 +43,7 @@ export const initMeteors = () => {
         clearInterval(meteorMove);
       }
     }, 150);
-  }, 2000);
+  }, 2000 / modifier);
 };
 
 export default {

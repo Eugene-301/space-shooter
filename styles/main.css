@@ -1,7 +1,9 @@
 @import url("./_normalize.css");
 @import url("./_globals.css");
+@import url("./_fonts.css");
 @import url("./blocks/player.css");
 @import url("./blocks/meteor.css");
+@import url("./blocks/menu.css");
 
 .root {
   width: 100%;

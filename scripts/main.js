@@ -1,5 +1,3 @@
-import player from "./player.js";
-import meteors from "./meteors.js";
+import initMenu from "./menu.js";
 
-player.initPlayer();
-meteors.initMeteors();
+initMenu.initMenu();
