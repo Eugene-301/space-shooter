@@ -1,18 +1,46 @@
 const root = document.querySelector(".root");
 const originalMeteor = document.querySelector(".meteor");
 
-const meteorSize = (originalMeteor.offsetWidth * 100) / window.innerWidth;
-const maxPosition = 100 - meteorSize;
+const meteorImgSrc = "./assets/images/enemy-meteor.png";
 
-export const initMeteors = () => {
-  setInterval(() => {
-    let randomPosition = Math.floor(Math.random() * (maxPosition + 1));
+const meteorSizeX = (originalMeteor.offsetWidth * 100) / window.innerWidth;
+const meteorSizeY = (originalMeteor.offsetHeight * 100) / window.innerHeight;
+const maxPosition = 100 - meteorSizeX;
+const meteorSpeed = 1;
 
-    const meteorHTML = `<div class='meteor' style="left: ${randomPosition}%"><img src='./assets/images/enemy-meteor.png'alt='вражеский метеорит'class='meteor__img img'/></div>`;
+const createMeteor = () => {
+  const randomPosition = Math.floor(Math.random() * (maxPosition + 1));
 
-    root.insertAdjacentHTML("afterbegin", meteorHTML);
-  }, 100);
+  const meteorDiv = document.createElement("div");
+  const meteorImg = document.createElement("img");
+
+  meteorImg.src = meteorImgSrc;
+  meteorImg.className = "meteor__img";
+
+  meteorDiv.className = "meteor";
+  meteorDiv.style.left = `${randomPosition}%`;
+  meteorDiv.appendChild(meteorImg);
+
+  root.appendChild(meteorDiv);
+
+  return meteorDiv;
 };
+
+export const initMeteors = setInterval(() => {
+  const meteor = createMeteor();
+
+  let yMeteorPosition = 0;
+
+  const meteorMove = setInterval(() => {
+    yMeteorPosition += meteorSpeed;
+    meteor.style.top = `${yMeteorPosition}%`;
+
+    if (yMeteorPosition > maxPosition + meteorSizeY) {
+      meteor.remove();
+      clearInterval(meteorMove);
+    }
+  }, 150);
+}, 2000);
 
 export default {
   initMeteors: initMeteors,
