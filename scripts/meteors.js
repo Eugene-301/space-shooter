@@ -1,11 +1,13 @@
 const root = document.querySelector(".root");
-const originalMeteor = document.querySelector(".meteor");
-
 const meteorImgSrc = "./assets/images/enemy-meteor.png";
 
-const meteorSizeX = (originalMeteor.offsetWidth * 100) / window.innerWidth;
-const meteorSizeY = (originalMeteor.offsetHeight * 100) / window.innerHeight;
-const maxPosition = 100 - meteorSizeX;
+const meteorSizeX = getComputedStyle(document.documentElement).getPropertyValue(
+  "--meteor-x-size"
+);
+const meteorSizeY = getComputedStyle(document.documentElement).getPropertyValue(
+  "--meteor-y-size"
+);
+const maxPosition = 100 - Number(meteorSizeX.replace("%", ""));
 const meteorSpeed = 1;
 
 const createMeteor = () => {
@@ -26,21 +28,23 @@ const createMeteor = () => {
   return meteorDiv;
 };
 
-export const initMeteors = setInterval(() => {
-  const meteor = createMeteor();
+export const initMeteors = () => {
+  setInterval(() => {
+    const meteor = createMeteor();
 
-  let yMeteorPosition = 0;
+    let yMeteorPosition = 0;
 
-  const meteorMove = setInterval(() => {
-    yMeteorPosition += meteorSpeed;
-    meteor.style.top = `${yMeteorPosition}%`;
+    const meteorMove = setInterval(() => {
+      yMeteorPosition += meteorSpeed;
+      meteor.style.top = `${yMeteorPosition}%`;
 
-    if (yMeteorPosition > maxPosition + meteorSizeY) {
-      meteor.remove();
-      clearInterval(meteorMove);
-    }
-  }, 150);
-}, 2000);
+      if (yMeteorPosition > maxPosition + meteorSizeY) {
+        meteor.remove();
+        clearInterval(meteorMove);
+      }
+    }, 150);
+  }, 2000);
+};
 
 export default {
   initMeteors: initMeteors,

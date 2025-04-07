@@ -3,9 +3,15 @@ const player = document.querySelector(".player");
 
 const positionMin = 0;
 const positionMax = 100;
-const playerSize = (100 * player.offsetWidth) / window.innerWidth;
+const playerSize = getComputedStyle(document.documentElement).getPropertyValue(
+  "--player-x-size"
+);
 
-let position = 0;
+let position = Number(
+  getComputedStyle(document.documentElement)
+    .getPropertyValue("--player-start-pos")
+    .replace("%", "")
+);
 
 let keysState = {
   left: false,
@@ -15,6 +21,7 @@ let keysState = {
 const checkIsMove = setInterval(() => {
   if (keysState.right) {
     if (position >= positionMax - playerSize) return;
+
     position += 2;
     player.style.left = `${position}%`;
   } else if (keysState.left) {
