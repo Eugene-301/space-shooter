@@ -2,8 +2,10 @@ const player = document.querySelector(".player");
 
 const positionMin = 0;
 const positionMax = 100;
-const playerSize = getComputedStyle(document.documentElement).getPropertyValue(
-  "--player-x-size"
+const playerSize = Number(
+  getComputedStyle(document.documentElement)
+    .getPropertyValue("--player-x-size")
+    .replace("%", "")
 );
 
 let position = Number(
@@ -11,6 +13,8 @@ let position = Number(
     .getPropertyValue("--player-start-pos")
     .replace("%", "")
 );
+
+console.log(position);
 
 let keysState = {
   left: false,
@@ -22,12 +26,14 @@ let updateFrame;
 const startFrames = () => {
   updateFrame = setInterval(() => {
     if (keysState.right) {
+      console.log(position);
+
       if (position >= positionMax - playerSize) return;
 
       position += 2;
       player.style.left = `${position}%`;
     } else if (keysState.left) {
-      if (position === positionMin) return;
+      if (position <= positionMin) return;
 
       position -= 2;
       player.style.left = `${position}%`;
@@ -64,6 +70,8 @@ export const initPlayer = () => {
 
 export const stopPlayer = () => {
   stopFrames();
+  keysState.left = false;
+  keysState.right = false;
 };
 
 export default {

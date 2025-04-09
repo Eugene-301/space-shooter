@@ -4,6 +4,7 @@
 @import url("./blocks/player.css");
 @import url("./blocks/meteor.css");
 @import url("./blocks/menu.css");
+@import url("./blocks/timer.css");
 
 .root {
   width: 100%;

@@ -1,6 +1,7 @@
 import meteors from "./meteors.js";
 import player from "./player.js";
 import timer from "./timer.js";
+import sounds from "./sounds.js";
 
 const modesModifiers = {
   easy: 1,
@@ -21,6 +22,7 @@ const removeMenu = () => {
 
 const initMenu = () => {
   drawMenu();
+  sounds.menuAmbient();
 
   const easyBtn = document.querySelector("#mode-easy-btn");
   const normalBtn = document.querySelector("#mode-normal-btn");
@@ -31,6 +33,7 @@ const initMenu = () => {
     meteors.initMeteors(modesModifiers.easy);
     player.initPlayer();
     timer.startTimer();
+    sounds.gameAmpient();
   });
 
   normalBtn.addEventListener("click", () => {
@@ -38,6 +41,7 @@ const initMenu = () => {
     meteors.initMeteors(modesModifiers.normal);
     player.initPlayer();
     timer.startTimer();
+    sounds.gameAmpient();
   });
 
   hardBtn.addEventListener("click", () => {
@@ -45,6 +49,7 @@ const initMenu = () => {
     meteors.initMeteors(modesModifiers.hard);
     player.initPlayer();
     timer.startTimer();
+    sounds.gameAmpient();
   });
 };
 

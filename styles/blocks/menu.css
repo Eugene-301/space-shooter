@@ -12,7 +12,7 @@
 
 .menu__title {
   margin-bottom: 1rem;
-  font-size: 5vw;
+  font-size: 12vh;
 }
 
 .menu__btn-container {
@@ -35,15 +35,15 @@
 }
 
 .menu__btn {
-  border-radius: 1vw;
+  border-radius: 2vh;
   border-color: var(--text-color);
   border-style: solid;
-  border-width: 0.2vw;
-  padding: 0.5vw;
+  border-width: 0.4vh;
+  padding: 1vh;
   transition: 0.3s ease;
   margin: 2vh;
-  width: 30vw;
-  font-size: 3vw;
+  width: 60vh;
+  font-size: 6vh;
 
   &:hover {
     color: var(--text-color) !important;
