@@ -7,7 +7,7 @@ let timerInterval = null;
 const startTimer = () => {
   timerInterval = setInterval(() => {
     timerCount++;
-    timer.textContent = `Время: ${timerCount}`;
+    timer.textContent = `time: ${timerCount}`;
   }, 1000);
 };
 
@@ -16,7 +16,7 @@ const stopTimer = () => {
   alert(`Survival time ${timerCount}`);
 
   timerCount = 0;
-  timer.textContent = `Время: ${timerCount}`;
+  timer.textContent = `time: ${timerCount}`;
 };
 
 export default {
