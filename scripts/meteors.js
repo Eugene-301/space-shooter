@@ -5,6 +5,9 @@ const player = document.querySelector(".player");
 
 const meteorImgSrc = "./assets/images/enemy-meteor.png";
 
+const defeatSound = new Audio("../assets/sounds/defeat-sound.mp3");
+defeatSound.volume = 0.1;
+
 const meteorSizeX = getComputedStyle(document.documentElement).getPropertyValue(
   "--meteor-x-size"
 );
@@ -51,8 +54,10 @@ export const initMeteors = (modifier = 1) => {
         playerRect.top < meteorCoords.bottom &&
         playerRect.bottom > meteorCoords.top
       ) {
+        defeatSound.play();
         clearInterval(meteorSpawning);
         restartGame();
+
         while (document.querySelector(".meteor")) {
           document.querySelector(".meteor").remove();
         }
