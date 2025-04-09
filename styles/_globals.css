@@ -1,6 +1,6 @@
 :root {
-  --player-x-size: 12.5%;
-  --player-y-size: 35%;
+  --player-x-size: 10%;
+  --player-y-size: 20%;
   --player-start-pos: 45%;
 
   --meteor-x-size: 7%;

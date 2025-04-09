@@ -1,4 +1,3 @@
-const root = document.querySelector(".root");
 const player = document.querySelector(".player");
 
 const positionMin = 0;
@@ -18,21 +17,30 @@ let keysState = {
   right: false,
 };
 
-const checkIsMove = setInterval(() => {
-  if (keysState.right) {
-    if (position >= positionMax - playerSize) return;
+let updateFrame;
 
-    position += 2;
-    player.style.left = `${position}%`;
-  } else if (keysState.left) {
-    if (position === positionMin) return;
+const startFrames = () => {
+  updateFrame = setInterval(() => {
+    if (keysState.right) {
+      if (position >= positionMax - playerSize) return;
 
-    position -= 2;
-    player.style.left = `${position}%`;
-  }
-}, 75);
+      position += 2;
+      player.style.left = `${position}%`;
+    } else if (keysState.left) {
+      if (position === positionMin) return;
+
+      position -= 2;
+      player.style.left = `${position}%`;
+    }
+  }, 75);
+};
+
+const stopFrames = () => {
+  clearInterval(updateFrame);
+};
 
 export const initPlayer = () => {
+  startFrames();
   document.addEventListener("keydown", (e) => {
     const keyPressed = e.key;
 
@@ -54,6 +62,11 @@ export const initPlayer = () => {
   });
 };
 
+export const stopPlayer = () => {
+  stopFrames();
+};
+
 export default {
   initPlayer: initPlayer,
+  stopPlayer: stopPlayer,
 };

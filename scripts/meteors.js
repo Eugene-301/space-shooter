@@ -1,4 +1,8 @@
+import { restartGame } from "./menu.js";
+
 const root = document.querySelector(".root");
+const player = document.querySelector(".player");
+
 const meteorImgSrc = "./assets/images/enemy-meteor.png";
 
 const meteorSizeX = getComputedStyle(document.documentElement).getPropertyValue(
@@ -29,7 +33,7 @@ const createMeteor = () => {
 };
 
 export const initMeteors = (modifier = 1) => {
-  setInterval(() => {
+  const meteorSpawning = setInterval(() => {
     const meteor = createMeteor();
 
     let yMeteorPosition = 0;
@@ -37,6 +41,22 @@ export const initMeteors = (modifier = 1) => {
     const meteorMove = setInterval(() => {
       yMeteorPosition += meteorSpeed * modifier;
       meteor.style.top = `${yMeteorPosition}%`;
+
+      const meteorCoords = meteor.getBoundingClientRect();
+      const playerRect = player.getBoundingClientRect();
+
+      if (
+        playerRect.left < meteorCoords.right &&
+        playerRect.right > meteorCoords.left &&
+        playerRect.top < meteorCoords.bottom &&
+        playerRect.bottom > meteorCoords.top
+      ) {
+        clearInterval(meteorSpawning);
+        restartGame();
+        while (document.querySelector(".meteor")) {
+          document.querySelector(".meteor").remove();
+        }
+      }
 
       if (yMeteorPosition > maxPosition + meteorSizeY) {
         meteor.remove();

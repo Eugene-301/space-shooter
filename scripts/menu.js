@@ -6,6 +6,7 @@ const modesModifiers = {
   normal: 2,
   hard: 3,
 };
+
 const menuHtml =
   '<div class="menu"><h1 class="menu__title">Space shooter</h1><div class="menu__btn-container"><button class="menu__btn" id="mode-easy-btn">Easy mode</button><button class="menu__btn" id="mode-normal-btn">Normal mode</button><button class="menu__btn" id="mode-hard-btn">Hard mode</button></div></div>';
 
@@ -41,6 +42,12 @@ const initMenu = () => {
   });
 };
 
+export const restartGame = () => {
+  player.stopPlayer();
+  initMenu();
+};
+
 export default {
   initMenu: initMenu,
+  restartGame: restartGame,
 };
